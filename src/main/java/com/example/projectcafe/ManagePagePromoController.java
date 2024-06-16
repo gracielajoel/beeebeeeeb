@@ -29,7 +29,7 @@ public class ManagePagePromoController {
     private TableColumn<Promo, String> periodColumn;
 
     @FXML
-    private TableColumn<Promo, String > paymentColumn;
+    private TableColumn<Promo, String> paymentColumn;
 
     @FXML
     private TableColumn<Promo, Double> discountColumn;
@@ -341,7 +341,8 @@ public class ManagePagePromoController {
         }
     }
 
-    public void handleMenuAction(ActionEvent actionEvent) {
+    @FXML
+    protected void handleMenuAction(ActionEvent actionEvent) {
         if (currentRole.equals("cashier")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("managepage-product.fxml"));
