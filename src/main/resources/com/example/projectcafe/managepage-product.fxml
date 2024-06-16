@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ManagePageProductController">
+   <children>
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="766.0" style="-fx-background-color: #8fc3f9;">
+         <children>
+            <Text layoutX="325.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Menu">
+               <font>
+                  <Font name="Bodoni MT Bold" size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="13.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="39.0" prefWidth="68.0" text="Back" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="menuTable" layoutX="50.0" layoutY="72.0" prefHeight="238.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="156.8000144958496" text="Menu Name" />
+          <TableColumn fx:id="smallPriceColumn" prefWidth="136.8000030517578" text="Small Price" />
+            <TableColumn fx:id="mediumPriceColumn" prefWidth="128.0" text="Medium Price" />
+            <TableColumn fx:id="largePriceColumn" minWidth="0.0" prefWidth="110.4000244140625" text="Large Price" />
+            <TableColumn fx:id="categoryColumn" prefWidth="140.800048828125" text="Category" />
+        </columns>
+      </TableView>
+      <Button layoutX="592.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="32.0" prefWidth="94.0" text="Add" />
+      <Button layoutX="592.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="32.0" prefWidth="93.0" text="Update" />
+      <Button layoutX="592.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="32.0" prefWidth="93.0" text="Delete" />
+      <Text layoutX="51.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category : Coffee(1), Cream(2), Add Ons(3)">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="51.0" layoutY="354.0" prefHeight="32.0" prefWidth="171.0" promptText="Menu name" />
+      <TextField fx:id="smallPriceField" layoutX="51.0" layoutY="400.0" prefHeight="32.0" prefWidth="171.0" promptText="Small Price" />
+      <TextField fx:id="mediumPriceField" layoutX="51.0" layoutY="448.0" prefHeight="32.0" prefWidth="171.0" promptText="Medium Price" />
+      <TextField fx:id="largePriceField" layoutX="260.0" layoutY="375.0" prefHeight="32.0" prefWidth="171.0" promptText="Large Price" />
+      <TextField fx:id="categoryField" layoutX="260.0" layoutY="423.0" prefHeight="32.0" prefWidth="171.0" promptText="Category" />
+   </children>
+</AnchorPane>
