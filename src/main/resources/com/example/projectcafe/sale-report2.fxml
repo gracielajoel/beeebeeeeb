@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportSale2Controller">
+   <children>
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="766.0" style="-fx-background-color: #91AEC4;">
+         <children>
+            <Text layoutX="259.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Report" textAlignment="CENTER" wrappingWidth="248.288818359375">
+               <font>
+                  <Font name="Bodoni MT Bold" size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="66.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView layoutX="98.0" layoutY="92.0" prefHeight="222.0" prefWidth="586.0" AnchorPane.bottomAnchor="129.6">
+        <columns>
+          <TableColumn prefWidth="94.39999389648438" text="Qty" />
+          <TableColumn prefWidth="251.2000274658203" text="Menu" />
+            <TableColumn prefWidth="239.99993896484375" text="Total Price" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+            <TableColumn prefWidth="75.0" text="Column X" />
+        </columns>
+      </TableView>
+      <Label layoutX="98.0" layoutY="314.0" prefHeight="22.0" prefWidth="357.0" text="Total" />
+   </children>
+</AnchorPane>

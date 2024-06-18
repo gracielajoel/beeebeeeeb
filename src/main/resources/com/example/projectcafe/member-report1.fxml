@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportMember1Controller">
+   <children>
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="766.0" style="-fx-background-color: lightpink;">
+         <children>
+            <Text layoutX="259.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report Period of the Most Active Member Available" textAlignment="CENTER" wrappingWidth="248.288818359375">
+               <font>
+                  <Font name="Bodoni MT Bold" size="15.0" />
+               </font>
+            </Text>
+            <Button layoutX="14.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="67.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView layoutX="96.0" layoutY="98.0" prefHeight="270.0" prefWidth="571.0">
+        <columns>
+          <TableColumn prefWidth="292.0000457763672" text="Month" />
+          <TableColumn prefWidth="277.5999633789063" text="Year" />
+        </columns>
+      </TableView>
+      <TextField layoutX="152.0" layoutY="390.0" promptText="Month">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="458.0" layoutY="390.0" promptText="Year">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
