@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ManagePageAddNewOrder">
+   <children>
+      <AnchorPane prefHeight="46.0" prefWidth="748.0" style="-fx-background-color: peru;">
+         <children>
+            <Label layoutX="309.0" layoutY="9.0" prefHeight="27.0" prefWidth="130.0" text="Add New Order Page" textAlignment="CENTER">
+               <font>
+                  <Font name="Bodoni MT Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+         </children>
+      </AnchorPane>
+      <TableView fx:id="orderTable" layoutX="23.0" layoutY="67.0" prefHeight="248.0" prefWidth="701.0">
+        <columns>
+          <TableColumn fx:id="menuColumn" prefWidth="110.0" text="Menu Name" />
+            <TableColumn fx:id="iceColumn" prefWidth="75.0" text="Ice Level" />
+            <TableColumn fx:id="sugarColumn" prefWidth="75.0" text="Sugar Level" />
+          <TableColumn fx:id="quantityColumn" prefWidth="60.0" text="Quantity" />
+            <TableColumn fx:id="sizeColumn" prefWidth="75.0" text="Size" />
+            <TableColumn fx:id="priceColumn" prefWidth="90.0" text="Price" />
+            <TableColumn fx:id="promoColumn" prefWidth="90.0" text="Promo Used" />
+            <TableColumn fx:id="afterPromoPriceColumn" prefWidth="133.60003662109375" text="After Promo Price" />
+        </columns>
+      </TableView>
+      <TextField fx:id="menuField" layoutX="46.0" layoutY="374.0" promptText="Menu Name">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="sizeField" layoutX="46.0" layoutY="442.0" promptText="Size">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="quantityField" layoutX="46.0" layoutY="408.0" promptText="Quantity">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="sugarField" layoutX="252.0" layoutY="374.0" promptText="Sugar Level">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="iceField" layoutX="252.0" layoutY="408.0" promptText="Ice Level">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <Button layoutX="542.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="24.0" prefWidth="54.0" text="Add">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="668.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="24.0" prefWidth="54.0" text="Delete">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="606.0" layoutY="397.0" mnemonicParsing="false" onAction="#handleUpdateButton" text="Update">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="529.0" layoutY="338.0" text="Total:">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPrice" layoutX="572.0" layoutY="335.0" prefHeight="27.0" prefWidth="119.0" style="-fx-background-color: lightgray;" text="Total Price" />
+      <Button layoutX="400.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleOKbutton" prefHeight="25.0" prefWidth="41.0" text="OK" />
+      <ComboBox fx:id="promoComboBox" layoutX="254.0" layoutY="441.0" onAction="#promoAvailable" prefWidth="150.0" promptText="Promo Available" />
+      <TextField fx:id="paymentTypeField" layoutX="223.0" layoutY="325.0" prefHeight="25.0" prefWidth="155.0" promptText="Payment Type" />
+      <DatePicker fx:id="dateField" layoutX="36.0" layoutY="325.0" promptText="Date" />
+   </children>
+</AnchorPane>

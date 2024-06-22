@@ -1,6 +1,5 @@
 package com.example.projectcafe;
 
-import com.example.projectcafe.classes.Cashier;
 import com.example.projectcafe.classes.Member;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

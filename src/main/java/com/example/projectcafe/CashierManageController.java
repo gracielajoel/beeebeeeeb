@@ -82,6 +82,8 @@ public class CashierManageController {
         }
     }
 
+
+
     @FXML
     protected void handleBackButton(ActionEvent actionEvent) {
         try {
@@ -89,6 +91,25 @@ public class CashierManageController {
             Parent root = loader.load();
 
             CashierTaskController controller = loader.getController();
+            controller.setStage(stage);
+            controller.setCurrentRole("cashier");
+
+            // ini utk ganti scene
+            // root utk ngisi isi scene
+            stage.getScene().setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void handleAddNewOrderButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("managepage-order.fxml"));
+            Parent root = loader.load();
+
+            ManagePageAddNewOrder controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
 
