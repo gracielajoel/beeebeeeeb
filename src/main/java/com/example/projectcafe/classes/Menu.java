@@ -5,9 +5,9 @@ public class Menu {
     private Double smallPrice;
     private Double mediumPrice;
     private Double largePrice;
-    private Integer category;
+    private String category;
 
-    public Menu(String menuName, Double smallPrice, Double mediumPrice, Double largePrice, Integer category) {
+    public Menu(String menuName, Double smallPrice, Double mediumPrice, Double largePrice, String category) {
         this.menuName = menuName;
         this.smallPrice = smallPrice;
         this.mediumPrice = mediumPrice;
@@ -47,11 +47,11 @@ public class Menu {
         this.largePrice = largePrice;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }

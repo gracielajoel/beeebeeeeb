@@ -11,9 +11,18 @@ public class Order {
     private String promoUsed;
     private Double afterPromoPrice;
 
-    private String date;
 
-    public Order(String menuName, String iceLevel, String sugarLevel, Integer quantity, String sizeChosen, Double price, String promoUsed, Double afterPromoPrice) {
+    private Double tempTotal;
+
+    public Double getTempTotal() {
+        return tempTotal;
+    }
+
+    public void setTempTotal(Double tempTotal) {
+        this.tempTotal = tempTotal;
+    }
+
+    public Order(String menuName, String iceLevel, String sugarLevel, Integer quantity, String sizeChosen, Double price, String promoUsed, Double afterPromoPrice, Double tempTotal) {
         this.menuName = menuName;
         this.iceLevel = iceLevel;
         this.sugarLevel = sugarLevel;
@@ -22,6 +31,7 @@ public class Order {
         this.price = price;
         this.promoUsed = promoUsed;
         this.afterPromoPrice = afterPromoPrice;
+        this.tempTotal = tempTotal;
     }
 
     public String getIceLevel() {
@@ -87,26 +97,6 @@ public class Order {
     public void setAfterPromoPrice(Double afterPromoPrice) {
         this.afterPromoPrice = afterPromoPrice;
     }
-
-//    public String getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
-//
-//    public Order(String menuName, String iceLevel, String sugarLevel, Integer quantity, String sizeChosen, Double price, String promoUsed, Double afterPromoPrice, String date) {
-//        this.menuName = menuName;
-//        this.iceLevel = iceLevel;
-//        this.sugarLevel = sugarLevel;
-//        this.quantity = quantity;
-//        this.sizeChosen = sizeChosen;
-//        this.price = price;
-//        this.promoUsed = promoUsed;
-//        this.afterPromoPrice = afterPromoPrice;
-//        this.date = date;
-//    }
 
 
 }

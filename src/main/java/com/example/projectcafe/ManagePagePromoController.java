@@ -21,7 +21,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ManagePagePromoController {
+    private String cashier_name;
 
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
     @FXML
     private TableView<Promo> promoTable;
 
@@ -320,6 +328,7 @@ public class ManagePagePromoController {
                 CashierManageController controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
+                controller.setCashier_name(cashier_name);
 
                 stage.getScene().setRoot(root);
             } catch (IOException e) {
@@ -351,6 +360,7 @@ public class ManagePagePromoController {
                 ManagePageProductController controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
+                controller.setCashier_name(cashier_name);
 
                 // ini utk ganti scene
                 // root utk ngisi isi scene

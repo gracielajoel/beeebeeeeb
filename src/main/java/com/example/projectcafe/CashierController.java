@@ -19,9 +19,19 @@ public class CashierController {
 
     @FXML
     private TextField nameField;
+
     @FXML
     private TextField passwordField;
 
+    private String cashier_name;
+
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
 
     private Stage stage;
 
@@ -38,9 +48,10 @@ public class CashierController {
         this.currentRole = currentRole;
     }
 
+    private String name;
     @FXML
     protected void handleLoginButtonAction(ActionEvent actionEvent) throws SQLException {
-        String name = nameField.getText();
+        name = nameField.getText();
         String password = passwordField.getText();
 
         if (validateLogin(name, password)) {
@@ -83,6 +94,7 @@ public class CashierController {
             CashierTaskController controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene

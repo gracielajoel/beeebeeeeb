@@ -8,6 +8,9 @@ public class Promo {
     private Integer menu;
     private String promoName;
 
+
+
+
     public Promo(String periode, String paymentType, Double totalDiscount, Integer category, Integer menu, String promoName) {
         this.periode = periode;
         this.paymentType = paymentType;

@@ -22,6 +22,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ManagePageProductController {
+    private String cashier_name;
+
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
 
     @FXML
     private TableView<Menu> menuTable;
@@ -85,12 +94,20 @@ public class ManagePageProductController {
     }
     private void loadMenuData() {
         menuList.clear();
-        try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM menus";
-            ResultSet rs = db.createStatement().executeQuery(query);
+        String query = "SELECT M.menu_name, M.small_price, M.medium_price, M.large_price, C.product_category " +
+                "FROM menus M JOIN categories C ON M.category_id = C.category_id";
+        try (Connection db = DatabaseConnection.getConnection();
+             PreparedStatement stmt = db.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                menuList.add(new Menu(rs.getString("menu_name"), rs.getDouble("small_price"), rs.getDouble("medium_price"), rs.getDouble("large_price"), rs.getInt("category_id")));
+                menuList.add(new Menu(
+                        rs.getString("menu_name"),
+                        rs.getDouble("small_price"),
+                        rs.getDouble("medium_price"),
+                        rs.getDouble("large_price"),
+                        rs.getString("product_category")
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,7 +122,7 @@ public class ManagePageProductController {
         String largePrice = largePriceField.getText();
         String category = categoryField.getText();
 
-        if (menuName.isEmpty() || smallPrice.isEmpty() ||mediumPrice.isEmpty() || largePrice.isEmpty() || category.isEmpty() ) {
+        if (menuName.isEmpty() || smallPrice.isEmpty() || mediumPrice.isEmpty() || largePrice.isEmpty() || category.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all fields correctly");
             return;
         }
@@ -123,24 +140,11 @@ public class ManagePageProductController {
 
             pstmt.executeUpdate();
 
-            int categoryId = fetchCategoryId(db, category);
-            menuList.add(new Menu(menuName, Double.parseDouble(smallPrice), Double.parseDouble(mediumPrice), Double.parseDouble(largePrice), categoryId));
+            menuList.add(new Menu(menuName, Double.parseDouble(smallPrice), Double.parseDouble(mediumPrice), Double.parseDouble(largePrice), category));
             clearFields();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    // utk ambil category_id
-    private int fetchCategoryId(Connection db, String categoryName) throws SQLException {
-        String query = "SELECT category_id FROM categories WHERE product_category = ?";
-        PreparedStatement pstmt = db.prepareStatement(query);
-        pstmt.setString(1, categoryName);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("category_id");
-        }
-        return -1;
     }
 
 
@@ -158,13 +162,14 @@ public class ManagePageProductController {
         String newLargePrice = largePriceField.getText();
         String newCategory = categoryField.getText();
 
-        if (newMenuName.isEmpty() || newSmallPrice.isEmpty() || newMediumPrice.isEmpty() || newLargePrice.isEmpty() || newCategory.isEmpty() ) {
+        if (newMenuName.isEmpty() || newSmallPrice.isEmpty() || newMediumPrice.isEmpty() || newLargePrice.isEmpty() || newCategory.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Form Error!", "Please fill in all fields correctly");
             return;
         }
 
         try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "UPDATE menus SET menu_name = ?, small_price = ?, medium_price = ?, large_price = ?, category_id = (SELECT category_id FROM categories WHERE product_category = ?) WHERE menu_name = ?";
+            String query = "UPDATE menus SET menu_name = ?, small_price = ?, medium_price = ?, large_price = ?, " +
+                    "category_id = (SELECT category_id FROM categories WHERE product_category = ?) WHERE menu_name = ?";
 
             PreparedStatement pstmt = db.prepareStatement(query);
             pstmt.setString(1, newMenuName);
@@ -172,8 +177,6 @@ public class ManagePageProductController {
             pstmt.setDouble(3, Double.parseDouble(newMediumPrice));
             pstmt.setDouble(4, Double.parseDouble(newLargePrice));
             pstmt.setString(5, newCategory);
-
-            int categoryId = fetchCategoryId(db, newCategory);
             pstmt.setString(6, selectedMenu.getMenuName());
             pstmt.executeUpdate();
 
@@ -181,14 +184,13 @@ public class ManagePageProductController {
             selectedMenu.setSmallPrice(Double.parseDouble(newSmallPrice));
             selectedMenu.setMediumPrice(Double.valueOf(newMediumPrice));
             selectedMenu.setLargePrice(Double.valueOf(newLargePrice));
-            selectedMenu.setCategory(categoryId);
+            selectedMenu.setCategory(newCategory);
             loadMenuData();
             clearFields();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -237,6 +239,7 @@ public class ManagePageProductController {
                 CashierManageController controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
+                controller.setCashier_name(cashier_name);
 
                 stage.getScene().setRoot(root);
             } catch (IOException e) {

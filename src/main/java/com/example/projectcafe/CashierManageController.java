@@ -11,6 +11,15 @@ import java.io.IOException;
 public class CashierManageController {
 
     private Stage stage;
+    private String cashier_name;
+
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
     private String currentRole;
 
     public String getCurrentRole() {
@@ -34,6 +43,7 @@ public class CashierManageController {
             ManagePageProductController controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(cashier_name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene
@@ -53,6 +63,7 @@ public class CashierManageController {
             ManagePagePromoController controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(cashier_name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene
@@ -72,6 +83,7 @@ public class CashierManageController {
             ManagePageMemberController controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(cashier_name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene
@@ -93,6 +105,7 @@ public class CashierManageController {
             CashierTaskController controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(cashier_name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene
@@ -112,6 +125,7 @@ public class CashierManageController {
             ManagePageAddNewOrder controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("cashier");
+            controller.setCashier_name(cashier_name);
 
             // ini utk ganti scene
             // root utk ngisi isi scene

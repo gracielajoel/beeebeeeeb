@@ -4,6 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 public class CashierReportController {
+    private String cashier_name;
+
+    public String getCashier_name() {
+        return cashier_name;
+    }
+
+    public void setCashier_name(String cashier_name) {
+        this.cashier_name = cashier_name;
+    }
     private Stage stage;
     private String currentRole;
     public String getCurrentRole() {
