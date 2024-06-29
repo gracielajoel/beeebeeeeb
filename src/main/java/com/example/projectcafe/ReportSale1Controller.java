@@ -1,11 +1,14 @@
 package com.example.projectcafe;
 
+import com.example.projectcafe.classes.Periode;
 import com.example.projectcafe.classes.Sales;
+import com.example.projectcafe.classes.SalesPeriod;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,11 +36,6 @@ public class ReportSale1Controller {
     @FXML
     private TextField yearField;
 
-    @FXML
-    private Button backButton;
-
-    @FXML
-    private Button submitButton;
 
     private Stage stage;
 
@@ -52,10 +50,41 @@ public class ReportSale1Controller {
     }
 
     @FXML
-    protected void initialize() {
-        submitButton.setOnAction(event -> handleSubmit(event));
-        backButton.setOnAction(event -> handleBack(event));
+    private TableView<SalesPeriod> salesPeriodTable;
 
+    @FXML
+    private TableColumn<SalesPeriod,String> monthColumn;
+
+    @FXML
+    private TableColumn<SalesPeriod, String> yearColumn;
+
+    @FXML
+    private TableColumn<SalesPeriod, Double> totalColumn;
+
+    private ObservableList<SalesPeriod> salesPeriodList = FXCollections.observableArrayList();
+
+
+    @FXML
+    public void initialize() {
+        monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalSales"));
+        salesPeriodTable.setItems(salesPeriodList);
+        loadPeriod();
+    }
+    private void loadPeriod() {
+        salesPeriodList.clear();
+        try (Connection db = DatabaseConnection.getConnection()) {
+            String query = "SELECT DISTINCT TO_CHAR(date_time, 'FMMonth') AS month, EXTRACT(YEAR FROM date_time) AS year, SUM(total_price) AS sum_price FROM invoices GROUP BY TO_CHAR(date_time, 'FMMonth'), EXTRACT(YEAR FROM date_time)";
+            ResultSet rs = db.createStatement().executeQuery(query);
+
+            while (rs.next()) {
+                salesPeriodList.add(new SalesPeriod(rs.getString("month"),
+                        rs.getString("year"), rs.getDouble("sum_price")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     protected void handleSubmit(ActionEvent event) {
@@ -74,7 +103,7 @@ public class ReportSale1Controller {
                     controller.setStage(stage);
                     controller.setCurrentRole(currentRole);
 
-                    Stage stage = (Stage) submitButton.getScene().getWindow();
+
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                 } else {

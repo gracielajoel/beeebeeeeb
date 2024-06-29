@@ -57,9 +57,9 @@ public class ReportCashier1Controller {
         monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         periodTable.setItems(periodeList);
-        loadCashierSales();
+        loadPeriod();
     }
-    private void loadCashierSales() {
+    private void loadPeriod() {
         periodeList.clear();
         try (Connection db = DatabaseConnection.getConnection()) {
             String query = "SELECT DISTINCT TO_CHAR(date_time, 'FMMonth') AS month_name, EXTRACT(YEAR FROM date_time) AS year\n FROM invoices;";

@@ -1,12 +1,14 @@
 package com.example.projectcafe;
 
 import com.example.projectcafe.classes.Menu;
+import com.example.projectcafe.classes.Periode;
 import com.example.projectcafe.classes.Promo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -54,11 +56,38 @@ public class ReportProduct1Controller{
     }
 
     @FXML
-    protected void initialize() {
-        submitButton.setOnAction(event -> handleSubmit(event));
-        backButton.setOnAction(event -> handleBack(event));
-    }
+    private TableView<Periode> periodTable;
 
+    @FXML
+    private TableColumn<Periode,String> monthColumn;
+
+    @FXML
+    private TableColumn<Periode, String> yearColumn;
+
+    private ObservableList<Periode> periodeList = FXCollections.observableArrayList();
+
+
+    @FXML
+    public void initialize() {
+        monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
+        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        periodTable.setItems(periodeList);
+        loadPeriod();
+    }
+    private void loadPeriod() {
+        periodeList.clear();
+        try (Connection db = DatabaseConnection.getConnection()) {
+            String query = "SELECT DISTINCT TO_CHAR(date_time, 'FMMonth') AS month_name, EXTRACT(YEAR FROM date_time) AS year\n FROM invoices;";
+            ResultSet rs = db.createStatement().executeQuery(query);
+
+            while (rs.next()) {
+                periodeList.add(new Periode(rs.getString("month_name"),
+                        rs.getString("year")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     protected void handleSubmit(ActionEvent event) {
         String month = monthField.getText();
