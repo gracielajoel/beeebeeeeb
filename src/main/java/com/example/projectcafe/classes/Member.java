@@ -15,6 +15,11 @@ public class Member {
         this.address = address;
     }
 
+    public Member(String memberName, Integer memberPoint){
+        this.memberName = memberName;
+        this.memberPoint = memberPoint;
+    }
+
     public String getMemberName() {
         return memberName;
     }

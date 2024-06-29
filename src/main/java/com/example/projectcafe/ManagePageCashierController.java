@@ -138,23 +138,36 @@ public class ManagePageCashierController {
 
         String newName = nameField.getText();
         Double newSalary = Double.valueOf(salaryField.getText());
-        Double newCommission = Double.valueOf(commissionField.getText());
+        String newCommission = commissionField.getText();
 
         if (newName.isEmpty() || newSalary.isNaN()) {
             showAlert(Alert.AlertType.ERROR, "Form Error", "Please enter username and password");
             return;
         }
 
+
+        Double commission = null;
+        if (!newCommission.isEmpty()) {
+            try {
+                commission = Double.parseDouble(newCommission);
+            } catch (NumberFormatException e) {
+                showAlert(Alert.AlertType.ERROR, "Input Error!", "Invalid commission format");
+                return;
+            }
+        }
         try (Connection db = DatabaseConnection.getConnection()) {
+            updateSalaryHistory(db,getCashierId(db,selectedUser.getCashierName()));
+
             String query = "UPDATE cashiers SET cashier_name = ?, salary = ?, commission = ? WHERE cashier_name = ?";
             PreparedStatement pstmt = db.prepareStatement(query);
             pstmt.setString(1, newName);
             pstmt.setDouble(2, newSalary);
 
-            if (newCommission.isNaN() || commissionField.getText().isEmpty() ){
+
+            if (commission == null) {
                 pstmt.setNull(3, Types.DOUBLE);
             } else {
-                pstmt.setDouble(3,newCommission);
+                pstmt.setDouble(3, commission);
             }
 
             pstmt.setString(4, selectedUser.getCashierName());
@@ -162,13 +175,42 @@ public class ManagePageCashierController {
 
             selectedUser.setCashierName(newName);
             selectedUser.setSalary(newSalary);
-            selectedUser.setCommission(newCommission);
+            selectedUser.setCommission(commission);
+
             loadCashierData();
             clearFields();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    private int getCashierId(Connection db, String name) throws SQLException{
+        String query = "SELECT cashier_id FROM cashiers WHERE cashier_name = ?";
+        PreparedStatement pstmt = db.prepareStatement(query);
+        pstmt.setString(1, name);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            return rs.getInt("cashier_id");
+        }
+        return -1;
+    }
+
+    private void updateSalaryHistory(Connection db, int cashierId) throws SQLException {
+        System.out.println("Updating salary history for cashier ID: " + cashierId);
+        String query = "INSERT INTO salary_histories (salary_history_id, last_salary, last_date, cashier_id) " +
+                "VALUES (DEFAULT, (SELECT salary FROM cashiers WHERE cashier_id = ?), CURRENT_DATE, ?)";
+        try (PreparedStatement pstmt = db.prepareStatement(query)) {
+            pstmt.setInt(1, cashierId);
+            pstmt.setInt(2, cashierId);
+            int rowsAffected = pstmt.executeUpdate();
+            System.out.println("Salary history updated, rows affected: " + rowsAffected);
+        } catch (SQLException e) {
+            System.err.println("Error updating salary history: " + e.getMessage());
+            throw e;
+        }
+    }
+
+
 
     @FXML
     protected void handleDeleteButton(ActionEvent actionEvent) {

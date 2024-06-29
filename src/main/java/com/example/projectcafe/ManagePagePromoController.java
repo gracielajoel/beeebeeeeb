@@ -100,11 +100,16 @@ public class ManagePagePromoController {
     private void loadPromoData() {
         promoList.clear();
         try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM promos";
+            String query = "SELECT P.periode_promo, P.payment_type, P.total_discount, C.product_category, M.menu_name, P.promo_name FROM PROMOS P LEFT JOIN categories C ON ( P.category_id = C.category_id ) LEFT JOIN menus M ON ( P.menu_id = M.menu_id )";
             ResultSet rs = db.createStatement().executeQuery(query);
 
             while (rs.next()) {
-                promoList.add(new Promo(rs.getString("periode_promo"), rs.getString("payment_type"), rs.getDouble("total_discount"), rs.getObject("category_id", Integer.class), rs.getObject("menu_id", Integer.class), rs.getString("promo_name")));
+                promoList.add(new Promo(rs.getString("periode_promo"),
+                        rs.getString("payment_type"),
+                        rs.getDouble("total_discount"),
+                        rs.getString("product_category"),
+                        rs.getString("menu_name"),
+                        rs.getString("promo_name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -157,18 +162,18 @@ public class ManagePagePromoController {
 
             pstmt.executeUpdate();
 
-            Integer categoryId = -1;
-            Integer menuId = -1;
+//            Integer categoryId = -1;
+//            Integer menuId = -1;
+//
+//            if (!category.isEmpty()) {
+//                categoryId = fetchCategoryId(db, category);
+//            }
+//
+//            if (!menu.isEmpty()) {
+//                menuId = fetchMenuId(db, menu);
+//            }
 
-            if (!category.isEmpty()) {
-                categoryId = fetchCategoryId(db, category);
-            }
-
-            if (!menu.isEmpty()) {
-                menuId = fetchMenuId(db, menu);
-            }
-
-            promoList.add(new Promo(promoPeriod, payment, Double.parseDouble(discount), categoryId == -1 ? null : categoryId, menuId == -1 ? null : menuId, name));
+            promoList.add(new Promo(promoPeriod, payment, Double.parseDouble(discount), category.isEmpty() ? null : category, menu.isEmpty() ? null : menu, name));
 
             clearFields();
         } catch (SQLException e) {
@@ -270,8 +275,10 @@ public class ManagePagePromoController {
             selectedPromo.setPeriode(newPromoPeriod);
             selectedPromo.setPaymentType(newPayment);
             selectedPromo.setTotalDiscount(Double.parseDouble(newDiscount));
-            selectedPromo.setCategory(categoryId == -1 ? null : categoryId);
-            selectedPromo.setMenu(menuId == -1 ? null : menuId);
+            //selectedPromo.setCategory(categoryId == -1 ? null : categoryId);
+           // selectedPromo.setMenu(menuId == -1 ? null : menuId);
+            selectedPromo.setCategory(newCategory);
+            selectedPromo.setMenu(newMenu);
             selectedPromo.setPromoName(newName);
             loadPromoData();
             clearFields();

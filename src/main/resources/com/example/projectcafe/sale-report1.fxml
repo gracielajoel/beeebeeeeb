@@ -17,7 +17,7 @@
                   <Font name="Bodoni MT Bold" size="15.0" />
                </font>
             </Text>
-            <Button layoutX="16.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="62.0" text="Back">
+            <Button fx:id="backButton" layoutX="16.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="62.0" text="Back">
                <font>
                   <Font name="Bodoni MT" size="12.0" />
                </font>
@@ -25,21 +25,22 @@
          </children>
       </AnchorPane>
       <TableView layoutX="98.0" layoutY="92.0" prefHeight="269.0" prefWidth="585.0">
-        <columns>
-          <TableColumn prefWidth="186.40000915527344" text="Month" />
-          <TableColumn prefWidth="212.79998779296875" text="Year" />
+         <columns>
+            <TableColumn prefWidth="186.40000915527344" text="Month" />
+            <TableColumn prefWidth="212.79998779296875" text="Year" />
             <TableColumn prefWidth="184.80001220703127" text="Total" />
-        </columns>
+         </columns>
       </TableView>
-      <TextField layoutX="204.0" layoutY="376.0" prefHeight="26.0" prefWidth="164.0" promptText="Month">
+      <TextField fx:id="monthField" layoutX="204.0" layoutY="376.0" prefHeight="26.0" prefWidth="164.0" promptText="Month">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <TextField layoutX="399.0" layoutY="376.0" prefHeight="26.0" prefWidth="164.0" promptText="Year">
+      <TextField fx:id="yearField" layoutX="399.0" layoutY="376.0" prefHeight="26.0" prefWidth="164.0" promptText="Year">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
+      <Button fx:id="submitButton" layoutX="587.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleSubmit" text="OK" />
    </children>
 </AnchorPane>

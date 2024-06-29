@@ -18,27 +18,22 @@
             <Button layoutX="102.0" layoutY="223.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
          </children>
       </AnchorPane>
-      <Button layoutX="330.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleManageCashierButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Cashier">
+      <Button layoutX="330.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleManageCashierButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Cashier">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="330.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleManageMemberButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Member">
+      <Button layoutX="330.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleManageMemberButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Member">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="330.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleManageProductButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Product">
+      <Button layoutX="330.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleManageProductButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Product">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="330.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleManagePromoButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Promo">
-         <font>
-            <Font name="Bodoni MT" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="330.0" layoutY="297.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="206.0" text="Add New Order">
+      <Button layoutX="330.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleManagePromoButtonAction" prefHeight="46.0" prefWidth="206.0" text="Manage Promo">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>

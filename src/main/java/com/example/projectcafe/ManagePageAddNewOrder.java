@@ -1,6 +1,5 @@
 package com.example.projectcafe;
 
-import com.example.projectcafe.classes.Cashier;
 import com.example.projectcafe.classes.Order;
 import com.example.projectcafe.classes.Promo;
 import javafx.collections.FXCollections;
@@ -185,10 +184,12 @@ public class ManagePageAddNewOrder {
             return;
         }
 
-        double afterPromoPrice = calculateAfterPromoPrice(price, promoComboBox.getValue(), quantity);
+        Promo promoChosen = new Promo(promoComboBox.getValue());
+
+        double afterPromoPrice = calculateAfterPromoPrice(price, promoChosen, quantity);
         double tempTotal = price * quantity;
 
-        Order newOrder = new Order(menuFieldText, iceFieldText, sugarFieldText, quantity, sizeFieldText, price, promoComboBox.getValue() != null ? promoComboBox.getValue().getPromoName() : null, afterPromoPrice, tempTotal);
+        Order newOrder = new Order(menuFieldText, iceFieldText, sugarFieldText, quantity, sizeFieldText, price, promoChosen != null ? promoChosen.getPromoName() : null, afterPromoPrice, tempTotal);
         orderList.add(newOrder);
         updateTotalPrice();
         clearFields();
@@ -228,7 +229,8 @@ public class ManagePageAddNewOrder {
                 return;
             }
 
-            double afterPromoPrice = calculateAfterPromoPrice(price, promoComboBox.getValue(), quantity);
+            Promo promochosen = new Promo(promoComboBox.getValue());
+            double afterPromoPrice = calculateAfterPromoPrice(price, promochosen, quantity);
             double tempTotal = price * quantity;
 
             selectedOrder.setMenuName(menuFieldText);
@@ -237,7 +239,7 @@ public class ManagePageAddNewOrder {
             selectedOrder.setQuantity(quantity);
             selectedOrder.setSizeChosen(sizeFieldText);
             selectedOrder.setPrice(price);
-            selectedOrder.setPromoUsed(promoComboBox.getValue() != null ? promoComboBox.getValue().getPromoName() : null);
+            selectedOrder.setPromoUsed(promochosen != null ? promochosen.getPromoName() : null);
             selectedOrder.setAfterPromoPrice(afterPromoPrice);
             selectedOrder.setTempTotal(tempTotal); // Update tempTotal
             orderTable.refresh();
@@ -266,21 +268,21 @@ public class ManagePageAddNewOrder {
                     System.out.println("Promo yang dipilih: " + selectedPromo.getPromoName());
 
                     // Update order list with selected promo's details
-                    for (Order order : orderList) {
-                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
-                        double afterPromoPrice = calculateAfterPromoPrice(price, selectedPromo, order.getQuantity());
-                        order.setAfterPromoPrice(afterPromoPrice);
-                        order.setPromoUsed(selectedPromo.getPromoName());
-                    }
+//                    for (Order order : orderList) {
+//                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
+//                        double afterPromoPrice = calculateAfterPromoPrice(price, selectedPromo, order.getQuantity());
+//                        order.setAfterPromoPrice(afterPromoPrice);
+//                        order.setPromoUsed(selectedPromo.getPromoName());
+//                    }
                     orderTable.refresh(); // Refresh table view to reflect changes
                     updateTotalPrice(); // Recalculate total price
                 } else {
                     // If no promo is selected, revert to regular prices
-                    for (Order order : orderList) {
-                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
-                        order.setAfterPromoPrice(price * order.getQuantity());
-                        order.setPromoUsed(null);
-                    }
+//                    for (Order order : orderList) {
+//                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
+//                        order.setAfterPromoPrice(price * order.getQuantity());
+//                        order.setPromoUsed(null);
+//                    }
                     orderTable.refresh(); // Refresh table view to reflect changes
                     updateTotalPrice(); // Recalculate total price
                 }
@@ -332,7 +334,7 @@ public class ManagePageAddNewOrder {
         for (Order order : orderList) {
             total += order.getAfterPromoPrice();
         }
-        totalPrice.setText(String.format("%.2f", total));
+        totalPrice.setText(String.valueOf(total));
     }
 
 
@@ -366,8 +368,8 @@ public class ManagePageAddNewOrder {
                                 rs.getString("periode_promo"),
                                 rs.getString("payment_type"),
                                 rs.getDouble("total_discount"),
-                                rs.getObject("category_id", Integer.class),
-                                rs.getObject("menu_id", Integer.class),
+                                rs.getString("category_id"),
+                                rs.getString("menu_id"),
                                 rs.getString("promo_name")
                         );
                         promoList.add(promo);
@@ -481,34 +483,36 @@ public class ManagePageAddNewOrder {
     protected void handleInvoiceButton(ActionEvent actionEvent) {
         try (Connection db = DatabaseConnection.getConnection()) {
 
-            String datetime = dateField.getValue() + " " + timeField.getText(); // Pastikan ada spasi di antara tanggal dan waktu
+            Timestamp datetime = Timestamp.valueOf(dateField.getValue() + " " + timeField.getText());
             String customerName = customerNameField.getText();
             Double total = Double.valueOf(totalPrice.getText());
             Double pay = Double.valueOf(payField.getText());
             String paymentType = paymentTypeField.getText();
             Double change = Double.valueOf(changeLabel.getText());
-            Integer addPoint = Integer.valueOf(pointLabel.getText());
+            String addPoint = pointLabel.getText();
             Integer cashierId = getCashierId(db, cashierName.getText());
-            Integer memberId = Integer.valueOf(memberIDField.getText());
+            String memberId = memberIDField.getText();
 
-            if (datetime.isEmpty() || customerName.isEmpty() || paymentType.isEmpty() || cashierId == -1 ) {
+            if (String.valueOf(datetime).isEmpty() || customerName.isEmpty() || paymentType.isEmpty() || cashierId == -1 ) {
                 showAlert(Alert.AlertType.ERROR, "Form Error!", "Mohon isi semua bidang yang diperlukan dengan benar.");
                 return;
             }
 
-            if ( memberIDField.getText().isEmpty() ){
+            System.out.println(cashierId);
+            System.out.println(datetime);
+
+            if ( memberId.isEmpty() ){
                 // Pastikan urutan kolom sesuai dengan urutan nilai yang diberikan
-                String query = "INSERT INTO invoices (date_time, customer_name, total_price, pay, payment_method, change, add_point, cashier_id) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO invoices (date_time, customer_name, total_price, pay, payment_method, change, cashier_id) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setString(1, datetime);
+                pstmt.setTimestamp(1, datetime);
                 pstmt.setString(2, customerName);
                 pstmt.setDouble(3, total);
                 pstmt.setDouble(4, pay);
                 pstmt.setString(5, paymentType);
                 pstmt.setDouble(6, change);
-                pstmt.setInt(7, addPoint);
-                pstmt.setInt(8, cashierId);
+                pstmt.setInt(7, cashierId);
 
                 pstmt.executeUpdate();
 
@@ -516,20 +520,21 @@ public class ManagePageAddNewOrder {
                 if (rs2.next()) {
                     invoiceId = rs2.getInt(1);
                 }
-            }else {
+
+            } else {
                 // Pastikan urutan kolom sesuai dengan urutan nilai yang diberikan
                 String query = "INSERT INTO invoices (date_time, customer_name, total_price, pay, payment_method, change, add_point, cashier_id, member_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setString(1, datetime);
+                pstmt.setTimestamp(1, datetime);
                 pstmt.setString(2, customerName);
                 pstmt.setDouble(3, total);
                 pstmt.setDouble(4, pay);
                 pstmt.setString(5, paymentType);
                 pstmt.setDouble(6, change);
-                pstmt.setInt(7, addPoint);
+                pstmt.setInt(7, Integer.parseInt(addPoint));
                 pstmt.setInt(8, cashierId);
-                pstmt.setInt(9, memberId);
+                pstmt.setInt(9, Integer.parseInt(memberId));
 
                 pstmt.executeUpdate();
 
@@ -541,8 +546,8 @@ public class ManagePageAddNewOrder {
                 // Update member points
                 String addMemberPoint = "UPDATE members SET member_point = ? WHERE member_id = ?";
                 PreparedStatement pstmt3 = db.prepareStatement(addMemberPoint);
-                pstmt3.setInt(1, addPoint);
-                pstmt3.setInt(2, memberId);
+                pstmt3.setInt(1, Integer.parseInt(addPoint));
+                pstmt3.setInt(2, Integer.parseInt(memberId));
                 pstmt3.executeUpdate();
             }
 
@@ -556,6 +561,7 @@ public class ManagePageAddNewOrder {
             payField.clear();
             customerNameField.clear();
             memberIDField.clear();
+            orderList.clear();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -584,7 +590,7 @@ public class ManagePageAddNewOrder {
     }
 
     private int getPromoId(Connection db, String promoName) throws SQLException {
-        String query = "SELECT promo_name FROM promos WHERE promo_name = ?";
+        String query = "SELECT promo_id FROM promos WHERE promo_name = ?";
         PreparedStatement pstmt = db.prepareStatement(query);
         pstmt.setString(1, promoName);
         ResultSet rs = pstmt.executeQuery();
@@ -634,10 +640,14 @@ public class ManagePageAddNewOrder {
         Double total = Double.valueOf(totalPrice.getText());
 
         Integer addPoint = calculatePoints(total);
-        pointLabel.setText(String.valueOf(addPoint));
+        if ( !memberIDField.getText().isEmpty()) {
+            pointLabel.setText(String.valueOf(addPoint));
+        } else {
+            pointLabel.setText(null);
+        }
 
         Double payment = Double.valueOf(payField.getText());
-        changeLabel.setText(String.format("%.2f", payment-total));
+        changeLabel.setText(String.valueOf(payment-total));
     }
 
     private void clearFields() {

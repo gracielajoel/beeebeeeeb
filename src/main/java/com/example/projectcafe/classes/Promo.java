@@ -4,14 +4,21 @@ public class Promo {
     private String periode;
     private String paymentType;
     private Double totalDiscount;
-    private Integer category;
-    private Integer menu;
+    private String category;
+    private String menu;
     private String promoName;
 
 
+    public Promo(Promo p){
+        this.periode = p.periode;
+        this.paymentType = p.paymentType;
+        this.totalDiscount = p.totalDiscount;
+        this.category = p.category;
+        this.menu = p.menu;
+        this.promoName = p.promoName;
+    }
 
-
-    public Promo(String periode, String paymentType, Double totalDiscount, Integer category, Integer menu, String promoName) {
+    public Promo(String periode, String paymentType, Double totalDiscount, String category, String menu, String promoName) {
         this.periode = periode;
         this.paymentType = paymentType;
         this.totalDiscount = totalDiscount;
@@ -52,19 +59,19 @@ public class Promo {
         this.totalDiscount = totalDiscount;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public Integer getMenu() {
+    public String getMenu() {
         return menu;
     }
 
-    public void setMenu(Integer menu) {
+    public void setMenu(String menu) {
         this.menu = menu;
     }
 }

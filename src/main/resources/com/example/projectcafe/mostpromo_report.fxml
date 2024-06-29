@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_MostPromoController">
+   <children>
+      <TableView fx:id="promoUsedTable" layoutX="43.0" layoutY="82.0" prefHeight="250.0" prefWidth="553.0">
+        <columns>
+          <TableColumn fx:id="promoNameColumn" prefWidth="306.4000244140625" text="Promo Name" />
+            <TableColumn fx:id="countColumn" prefWidth="247.99993896484375" text="Count" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutY="-1.0" prefHeight="54.0" prefWidth="640.0" style="-fx-background-color: limegreen;">
+         <children>
+            <Label layoutX="195.0" layoutY="16.0" text="Most Frequently Used Promo Report">
+               <font>
+                  <Font name="Bodoni MT" size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="61.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
