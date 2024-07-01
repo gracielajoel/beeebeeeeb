@@ -15,7 +15,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Text layoutX="208.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR ROLE !" wrappingWidth="384.00008392333984">
+      <Text fill="WHITE" layoutX="208.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RUSTIC ROAST CAFE" textAlignment="CENTER" wrappingWidth="384.00008392333984">
          <font>
             <Font name="Bodoni MT" size="35.0" />
          </font>
