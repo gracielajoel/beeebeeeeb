@@ -101,10 +101,10 @@ public class ReportCashier2Controller {
     @FXML
     protected void handleBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("report-owner.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("cashier-report1.fxml"));
             Parent root = loader.load();
 
-            OwnerReportController controller = loader.getController();
+            ReportCashier1Controller controller = loader.getController();
             controller.setStage(stage);
             controller.setCurrentRole("owner");
 

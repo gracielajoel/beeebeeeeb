@@ -184,7 +184,7 @@ public class ManagePageAddNewOrder {
             return;
         }
 
-        Promo promoChosen = new Promo(promoComboBox.getValue());
+        Promo promoChosen = promoComboBox.getValue();
 
         double afterPromoPrice = calculateAfterPromoPrice(price, promoChosen, quantity);
         double tempTotal = price * quantity;
@@ -229,7 +229,7 @@ public class ManagePageAddNewOrder {
                 return;
             }
 
-            Promo promochosen = new Promo(promoComboBox.getValue());
+            Promo promochosen = promoComboBox.getValue();
             double afterPromoPrice = calculateAfterPromoPrice(price, promochosen, quantity);
             double tempTotal = price * quantity;
 
@@ -609,7 +609,11 @@ public class ManagePageAddNewOrder {
                 detailOrdersStmt.setString(3, order.getSugarLevel());
                 detailOrdersStmt.setString(4, order.getIceLevel());
                 detailOrdersStmt.setInt(5,getMenuId(db,order.getMenuName()));
-                detailOrdersStmt.setInt(6,getPromoId(db,order.getPromoUsed()));
+                if ( getPromoId(db,order.getPromoUsed()) == -1 ){
+                    detailOrdersStmt.setNull(6,java.sql.Types.INTEGER);
+                } else {
+                    detailOrdersStmt.setInt(6, getPromoId(db, order.getPromoUsed()));
+                }
                 detailOrdersStmt.setInt(7, invoice_id);
                 detailOrdersStmt.addBatch();
             }

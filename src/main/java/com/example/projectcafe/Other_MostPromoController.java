@@ -65,7 +65,7 @@ public class Other_MostPromoController {
     private void loadPromoCounts() {
         promoUsedList.clear();
         try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "SELECT P.promo_name, COUNT(D.*) AS \"promo_used\" FROM detail_orders D JOIN promos P ON ( D.promo_id = P.promo_id ) GROUP BY D.promo_id, P.promo_name";
+            String query = "SELECT P.promo_name, COUNT(D.*) AS \"promo_used\" FROM detail_orders D JOIN promos P ON ( D.promo_id = P.promo_id ) GROUP BY D.promo_id, P.promo_name ORDER BY promo_used DESC";
             ResultSet rs = db.createStatement().executeQuery(query);
 
             while (rs.next()) {

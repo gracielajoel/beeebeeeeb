@@ -2,6 +2,7 @@ package com.example.projectcafe;
 
 import com.example.projectcafe.classes.Periode;
 import com.example.projectcafe.classes.Promo;
+import com.example.projectcafe.classes.PromoUsed;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,16 +72,24 @@ public class ReportPromo1Controller {
     private void loadPeriod() {
         periodeList.clear();
         try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "SELECT DISTINCT TO_CHAR(date_time, 'FMMonth') AS month_name, EXTRACT(YEAR FROM date_time) AS year\n FROM invoices;";
+            String query = "SELECT DISTINCT EXTRACT(MONTH FROM p.periode_promo) AS month, EXTRACT(YEAR FROM p.periode_promo) AS year\n" +
+                    "FROM promos p\n" +
+                    "ORDER BY year DESC, month DESC;";
             ResultSet rs = db.createStatement().executeQuery(query);
 
             while (rs.next()) {
-                periodeList.add(new Periode(rs.getString("month_name"),
-                        rs.getString("year")));
+                int monthNumber = rs.getInt("month");
+                String monthName = getMonthName(monthNumber);
+                String year = rs.getString("year");
+                periodeList.add(new Periode(monthName, year));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getMonthName(int monthNumber) {
+        return new DateFormatSymbols().getMonths()[monthNumber - 1];
     }
 
     @FXML
@@ -89,7 +99,7 @@ public class ReportPromo1Controller {
 
         try {
             if (isValidDate(month, year)) {
-                List<Promo> topPromos = fetchTopPromos(month, year);
+                List<PromoUsed> topPromos = fetchTopPromos(month, year);
                 if (!topPromos.isEmpty()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("promo-report2.fxml"));
                     Parent root = loader.load();
@@ -146,39 +156,56 @@ public class ReportPromo1Controller {
     }
 
     private boolean isValidDate(String month, String year) {
+        return (getMonthNumber(month) != -1 && isValidYear(year));
+    }
+
+    private boolean isValidYear(String year) {
         try {
-            int m = Integer.parseInt(month);
             int y = Integer.parseInt(year);
-            return (m >= 1 && m <= 12 && y > 0);
+            return y > 0;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private List<Promo> fetchTopPromos(String month, String year) {
-        List<Promo> promos = new ArrayList<>();
+    private int getMonthNumber(String monthName) {
+        String[] months = new DateFormatSymbols().getMonths();
+        for (int i = 0; i < months.length; i++) {
+            if (months[i].equalsIgnoreCase(monthName)) {
+                return i + 1; // Month number is 1-based
+            }
+        }
+        return -1; // Invalid month
+    }
+
+    private List<PromoUsed> fetchTopPromos(String month, String year) {
+        List<PromoUsed> promos = new ArrayList<>();
+        int monthNumber = getMonthNumber(month);
+        if (monthNumber == -1) {
+            return promos;
+        }
 
         String query = """
-                    SELECT promo_name, COUNT(*) as count\s
-                                                FROM promos\s
-                                                WHERE EXTRACT(MONTH FROM periode_promo) = ?\s
-                                                AND EXTRACT(YEAR FROM periode_promo) = ?\s
-                                                GROUP BY promo_name\s
-                                                ORDER BY count DESC\s
-                                                LIMIT 5;
+                    SELECT P.promo_name, COUNT(D.*)
+                    FROM detail_orders D JOIN promos P
+                    ON ( D.promo_id = P.promo_id )
+                    JOIN invoices I ON ( D.invoice_id = I.invoice_id )
+                    WHERE EXTRACT(MONTH FROM I.date_time) = ?\s
+                    AND EXTRACT(YEAR FROM I.date_time) = ?
+                    GROUP BY D.promo_id, P.promo_name
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, Integer.parseInt(month));
+            stmt.setInt(1, monthNumber);
             stmt.setInt(2, Integer.parseInt(year));
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String promoName = rs.getString("promo_name");
                 int totalPoints = rs.getInt("count");
-               // promos.add(new Promo(null, null, null, null, null, promoName, totalPoints));
+                promos.add(new PromoUsed(promoName, totalPoints));
             }
         } catch (SQLException e) {
             e.printStackTrace();

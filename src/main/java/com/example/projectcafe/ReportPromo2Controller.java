@@ -1,5 +1,6 @@
 package com.example.projectcafe;
 
+import com.example.projectcafe.classes.PromoUsed;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,13 +29,13 @@ public class ReportPromo2Controller {
     }
 
     @FXML
-    private TableView<Promo> promoTable;
+    private TableView<PromoUsed> promoTable;
 
     @FXML
-    private TableColumn<Promo, String> promoNameColumn;
+    private TableColumn<PromoUsed, String> promoNameColumn;
 
     @FXML
-    private TableColumn<Promo, Integer> promoCountColumn;
+    private TableColumn<PromoUsed, Integer> promoCountColumn;
 
     @FXML
     private Button backButton;
@@ -42,7 +43,7 @@ public class ReportPromo2Controller {
     private Stage stage;
     private String currentRole;
 
-    private ObservableList<Promo> promoData = FXCollections.observableArrayList();
+    private ObservableList<PromoUsed> promoData = FXCollections.observableArrayList();
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -57,9 +58,9 @@ public class ReportPromo2Controller {
 
     }
 
-    public void initialize(List<Promo> topPromo) {
+    public void initialize(List<PromoUsed> topPromo) {
         promoNameColumn.setCellValueFactory(new PropertyValueFactory<>("promoName"));
-        promoCountColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
+        promoCountColumn.setCellValueFactory(new PropertyValueFactory<>("promoUsed"));
         this.promoData.addAll(topPromo);
         this.promoTable.setItems(promoData);
         this.backButton.setOnAction((event) -> handleBack());
@@ -69,10 +70,10 @@ public class ReportPromo2Controller {
     protected void handleBack() {
         if (currentRole.equals("cashier")) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-cashier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("promo-report1.fxml"));
                 Parent root = loader.load();
 
-                CashierReportController controller = loader.getController();
+                ReportPromo1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
 
@@ -82,10 +83,10 @@ public class ReportPromo2Controller {
             }
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-owner.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("promo-report1.fxml"));
                 Parent root = loader.load();
 
-                OwnerReportController controller = loader.getController();
+                ReportPromo1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("owner");
 

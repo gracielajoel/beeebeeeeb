@@ -2,6 +2,7 @@ package com.example.projectcafe;
 
 import com.example.projectcafe.classes.Menu;
 import com.example.projectcafe.classes.Periode;
+import com.example.projectcafe.classes.ProductSold;
 import com.example.projectcafe.classes.Promo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,6 @@ public class ReportProduct1Controller{
 
     @FXML
     private TextField yearField;
-
-    @FXML
-    private Button backButton;
 
     @FXML
     private Button submitButton;
@@ -95,7 +94,7 @@ public class ReportProduct1Controller{
 
         try {
             if (isValidDate(month, year)) {
-                List<Menu> topProduct = fetchTopProducts(month, year);
+                List<ProductSold> topProduct = fetchTopProducts(month, year);
                 if (!topProduct.isEmpty()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("product-report2.fxml"));
                     Parent root = loader.load();
@@ -156,42 +155,59 @@ public class ReportProduct1Controller{
     }
 
     private boolean isValidDate(String month, String year) {
+        return (getMonthNumber(month) != -1 && isValidYear(year));
+    }
+
+    private boolean isValidYear(String year) {
         try {
-            int m = Integer.parseInt(month);
             int y = Integer.parseInt(year);
-            return (m >= 1 && m <= 12 && y > 0);
+            return y > 0;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private List<Menu> fetchTopProducts(String month, String year) {
-        List<Menu> menus = new ArrayList<>();
+    private int getMonthNumber(String monthName) {
+        String[] months = new DateFormatSymbols().getMonths();
+        for (int i = 0; i < months.length; i++) {
+            if (months[i].equalsIgnoreCase(monthName)) {
+                return i + 1; // Month number is 1-based
+            }
+        }
+        return -1; // Invalid month
+    }
+
+    private List<ProductSold> fetchTopProducts(String month, String year) {
+        List<ProductSold> menus = new ArrayList<>();
+        int monthNumber = getMonthNumber(month);
+        if (monthNumber == -1) {
+            return menus;
+        }
 
         String query = """
-                    SELECT m.menu_name, m.category_id, SUM(d.qty) as total_quantity
+                    SELECT m.menu_name, c.product_category, SUM(d.qty) as total_quantity
                                     FROM invoices i
                                     JOIN detail_orders d ON i.invoice_id = d.invoice_id
                                     JOIN menus m ON d.menu_id = m.menu_id
+                                    JOIN categories c ON m.category_id = c.category_id
                                     WHERE EXTRACT(MONTH FROM i.date_time) = ?
                                     AND EXTRACT(YEAR FROM i.date_time) = ?
-                                    GROUP BY m.menu_name, m.category_id
-                                    ORDER BY total_quantity DESC
-                                    LIMIT 5;
+                                    GROUP BY m.menu_name, c.product_category
+                                    ORDER BY total_quantity DESC;
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, Integer.parseInt(month));
+            stmt.setInt(1, monthNumber);
             stmt.setInt(2, Integer.parseInt(year));
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                String categoryName = rs.getString("product_category");
                 String menuName = rs.getString("menu_name");
-                int categoryName = rs.getInt("category_id");
                 int totalSales = rs.getInt("total_quantity");
-                //menus.add(new Menu(menuName, null, null, null, categoryName, totalSales));
+                menus.add(new ProductSold(categoryName,menuName, totalSales));
             }
         } catch (SQLException e) {
             e.printStackTrace();

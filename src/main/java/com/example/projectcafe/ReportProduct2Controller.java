@@ -1,6 +1,7 @@
 package com.example.projectcafe;
 
 import com.example.projectcafe.classes.Menu;
+import com.example.projectcafe.classes.ProductSold;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -29,24 +30,21 @@ public class ReportProduct2Controller {
     }
 
     @FXML
-    private TableView<Menu> productTable;
+    private TableView<ProductSold> productTable;
 
     @FXML
-    private TableColumn<Menu, String> productNameColumn;
+    private TableColumn<ProductSold, String> productNameColumn;
 
     @FXML
-    private TableColumn<Menu, String> productCategoryColumn;
+    private TableColumn<ProductSold, String> productCategoryColumn;
 
     @FXML
-    private TableColumn<Menu, Integer> productCountColumn;
-
-    @FXML
-    private Button backButton;
+    private TableColumn<ProductSold, Integer> productCountColumn;
 
     private Stage stage;
     private String currentRole;
 
-    private ObservableList<Menu> productData = FXCollections.observableArrayList();
+    private ObservableList<ProductSold> productData = FXCollections.observableArrayList();
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -56,25 +54,25 @@ public class ReportProduct2Controller {
         this.currentRole = currentRole;
     }
 
-    public void initialize(List<Menu> topProduct) {
+    public void initialize(List<ProductSold> topProduct) {
+        productCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("menuName"));
-        productCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        productCountColumn.setCellValueFactory(new PropertyValueFactory<>("count"));
+        productCountColumn.setCellValueFactory(new PropertyValueFactory<>("menuSum"));
         this.productData.addAll(topProduct);
         this.productTable.setItems(this.productData);
-        this.backButton.setOnAction((event) -> {
-            this.handleBack();
-        });
+//        this.backButton.setOnAction((event) -> {
+//            this.handleBack();
+//        });
     }
 
     @FXML
     protected void handleBack() {
         if (currentRole.equals("cashier")) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-cashier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("product-report1.fxml"));
                 Parent root = loader.load();
 
-                CashierReportController controller = loader.getController();
+                ReportProduct1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
 
@@ -84,10 +82,10 @@ public class ReportProduct2Controller {
             }
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-owner.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("product-report1.fxml"));
                 Parent root = loader.load();
 
-                OwnerReportController controller = loader.getController();
+                ReportProduct1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("owner");
 

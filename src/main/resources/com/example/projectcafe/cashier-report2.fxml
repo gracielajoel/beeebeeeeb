@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportCashier2Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportCashier2Controller">
    <children>
-      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="766.0" style="-fx-background-color: #81D8D0;">
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #81D8D0;">
          <children>
-            <Text layoutX="259.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Most Active Cashier" textAlignment="CENTER" wrappingWidth="248.288818359375">
+            <Text layoutX="276.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Most Active Cashier" textAlignment="CENTER" wrappingWidth="248.288818359375">
                <font>
                   <Font name="Bodoni MT Bold" size="15.0" />
                </font>
@@ -20,10 +20,10 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="cashierTable" layoutX="98.0" layoutY="92.0" prefHeight="269.0" prefWidth="585.0">
+      <TableView fx:id="cashierTable" layoutX="82.0" layoutY="91.0" prefHeight="366.0" prefWidth="646.0">
          <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="276.0000457763672" text="Name" />
-            <TableColumn fx:id="countColumn" prefWidth="307.20001220703125" text="Count" />
+            <TableColumn fx:id="nameColumn" prefWidth="350.0" text="Name" />
+            <TableColumn fx:id="countColumn" prefWidth="307.20001220703125" text="Number of Sales" />
          </columns>
       </TableView>
    </children>

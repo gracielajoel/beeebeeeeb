@@ -56,7 +56,7 @@ public class ReportSale2Controller {
     private ObservableList<Sales> salesData = FXCollections.observableArrayList();
 
     public void initialize(List<Sales> topSales) {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("menuName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("totalQuantity"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
         salesData.addAll(topSales);
@@ -67,10 +67,10 @@ public class ReportSale2Controller {
     protected void handleBack() {
         if (currentRole.equals("cashier")) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-cashier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("sale-report1.fxml"));
                 Parent root = loader.load();
 
-                CashierReportController controller = loader.getController();
+                ReportSale1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
 
@@ -80,10 +80,10 @@ public class ReportSale2Controller {
             }
         } else {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-owner.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("sale-report1.fxml"));
                 Parent root = loader.load();
 
-                OwnerReportController controller = loader.getController();
+                ReportSale1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("owner");
 

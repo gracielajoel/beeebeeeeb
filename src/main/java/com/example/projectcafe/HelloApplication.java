@@ -17,8 +17,8 @@ public class HelloApplication extends Application {
         RoleController controller = loader.getController();
         controller.setStage(primaryStage);
 
-        primaryStage.setTitle("Cafe!!");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setTitle("Rustic Roast Cafe!!");
+        primaryStage.setScene(new Scene(root, 800, 550));
         primaryStage.show();
     }
 

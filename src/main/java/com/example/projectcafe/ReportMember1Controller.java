@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +120,29 @@ public class ReportMember1Controller {
         System.out.println("Month: " + month + ", Year: " + year);
     }
 
+    private boolean isValidDate(String month, String year) {
+        return (getMonthNumber(month) != -1 && isValidYear(year));
+    }
+
+    private boolean isValidYear(String year) {
+        try {
+            int y = Integer.parseInt(year);
+            return y > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private int getMonthNumber(String monthName) {
+        String[] months = new DateFormatSymbols().getMonths();
+        for (int i = 0; i < months.length; i++) {
+            if (months[i].equalsIgnoreCase(monthName)) {
+                return i + 1; // Month number is 1-based
+            }
+        }
+        return -1; // Invalid month
+    }
+
     @FXML
     protected void handleBack(ActionEvent event) {
         if (currentRole.equals("cashier")) {
@@ -150,40 +174,32 @@ public class ReportMember1Controller {
         }
     }
 
-    private boolean isValidDate(String month, String year) {
-        try {
-            int m = Integer.parseInt(month);
-            int y = Integer.parseInt(year);
-            return (m >= 1 && m <= 12 && y > 0);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     private List<Member> fetchTopMembers(String month, String year) {
         List<Member> members = new ArrayList<>();
+        int monthNumber = getMonthNumber(month);
+        if (monthNumber == -1) {
+            return members;
+        }
 
         String query = """
-            SELECT m.member_name, COALESCE(SUM(i.add_point), 0) + m.member_point AS total_points
-            FROM members m
-            LEFT JOIN invoices i ON m.member_id = i.member_id
-                AND EXTRACT(MONTH FROM i.date_time) = ? 
-                AND EXTRACT(YEAR FROM i.date_time) = ? 
-            GROUP BY m.member_id, m.member_name, m.member_point
-            ORDER BY total_points DESC
-            LIMIT 5;
-        """;
+                    SELECT M.member_name, SUM(I.add_point) AS sum_point
+                            FROM invoices I JOIN members M
+                            ON ( I.member_id = M.member_id )
+                            WHERE EXTRACT(MONTH FROM I.date_time) = ?
+                            AND EXTRACT(YEAR FROM I.date_time) = ?
+                            GROUP BY I.member_id, M.member_name
+                """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, Integer.parseInt(month));
+            stmt.setInt(1, monthNumber);
             stmt.setInt(2, Integer.parseInt(year));
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String memberName = rs.getString("member_name");
-                int totalPoints = rs.getInt("total_points");
+                int totalPoints = rs.getInt("sum_point");
                 members.add(new Member(memberName, totalPoints, null, null, null));
             }
         } catch (SQLException e) {

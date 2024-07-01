@@ -5,35 +5,35 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.CashierReportController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.CashierReportController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="259.0" style="-fx-background-color: skyblue;">
+      <AnchorPane prefHeight="550.0" prefWidth="407.0" style="-fx-background-color: skyblue;">
          <children>
-            <Line endX="100.0" layoutX="123.0" layoutY="204.0" startX="-100.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="166.0" prefHeight="37.0" prefWidth="206.0" text="REPORT">
+            <Line endX="100.0" layoutX="204.0" layoutY="285.0" startX="-100.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="247.0" prefHeight="37.0" prefWidth="206.0" text="REPORT">
                <font>
                   <Font name="Bodoni MT" size="21.0" />
                </font>
             </Label>
-            <Button layoutX="103.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
+            <Button layoutX="184.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
          </children>
       </AnchorPane>
-      <Button layoutX="328.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleBestSellingButtonAction" prefHeight="46.0" prefWidth="206.0" text="Best Selling Product List Report">
+      <Button layoutX="517.0" layoutY="222.0" mnemonicParsing="false" onAction="#handleBestSellingButtonAction" prefHeight="46.0" prefWidth="206.0" text="Best Selling Product List Report">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="328.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleSalesButtonAction" prefHeight="46.0" prefWidth="206.0" text="Sales Report">
+      <Button layoutX="517.0" layoutY="162.0" mnemonicParsing="false" onAction="#handleSalesButtonAction" prefHeight="46.0" prefWidth="206.0" text="Sales Report">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="328.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleActiveMemberButtonAction" prefHeight="46.0" prefWidth="206.0" text="Most Active Member List Report">
+      <Button layoutX="517.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleActiveMemberButtonAction" prefHeight="46.0" prefWidth="206.0" text="Most Active Member List Report">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="328.0" layoutY="267.0" mnemonicParsing="false" onAction="#handlePromoUsageButtonAction" prefHeight="46.0" prefWidth="206.0" text="Promo Usage Report">
+      <Button layoutX="517.0" layoutY="342.0" mnemonicParsing="false" onAction="#handlePromoUsageButtonAction" prefHeight="46.0" prefWidth="206.0" text="Promo Usage Report">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>

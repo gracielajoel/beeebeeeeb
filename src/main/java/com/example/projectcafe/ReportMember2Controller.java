@@ -69,18 +69,13 @@ public class ReportMember2Controller {
         System.out.println("Back button pressed");
         System.out.println("Current role: " + currentRole);
 
-        if (currentRole == null) {
-            System.err.println("currentRole is not initialized!");
-            return;
-        }
-
         if (currentRole.equals("cashier")) {
             try {
                 System.out.println("Loading report-cashier.fxml");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-cashier.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("member-report1.fxml"));
                 Parent root = loader.load();
 
-                CashierReportController controller = loader.getController();
+                ReportMember1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("cashier");
 
@@ -91,10 +86,10 @@ public class ReportMember2Controller {
         } else {
             try {
                 System.out.println("Loading report-owner.fxml");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("report-owner.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("member-report1.fxml"));
                 Parent root = loader.load();
 
-                OwnerReportController controller = loader.getController();
+                ReportMember1Controller controller = loader.getController();
                 controller.setStage(stage);
                 controller.setCurrentRole("owner");
 

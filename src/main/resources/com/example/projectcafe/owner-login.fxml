@@ -5,54 +5,54 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.OwnerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.OwnerController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="259.0" style="-fx-background-color: skyblue;">
+      <AnchorPane prefHeight="556.0" prefWidth="382.0" style="-fx-background-color: skyblue;">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="204.0" prefHeight="37.0" prefWidth="206.0" text="WELCOME BACK!">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="263.0" prefHeight="37.0" prefWidth="206.0" text="WELCOME BACK!">
                <font>
                   <Font name="Bodoni MT" size="21.0" />
                </font>
             </Label>
-            <Line endX="100.0" layoutX="123.0" layoutY="204.0" startX="-100.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="166.0" prefHeight="37.0" prefWidth="206.0" text="OWNER LOGIN">
+            <Line endX="100.0" layoutX="191.0" layoutY="263.0" startX="-100.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="225.0" prefHeight="37.0" prefWidth="206.0" text="OWNER LOGIN">
                <font>
                   <Font name="Bodoni MT" size="21.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Button layoutX="405.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="LOGIN">
+      <Button layoutX="553.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" text="LOGIN">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="usernameField" layoutX="358.0" layoutY="158.0" prefHeight="24.0" prefWidth="150.0" promptText="Username">
+      <TextField fx:id="usernameField" layoutX="506.0" layoutY="236.0" prefHeight="24.0" prefWidth="150.0" promptText="Username">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="passwordField" layoutX="358.0" layoutY="209.0" promptText="Password">
+      <TextField fx:id="passwordField" layoutX="506.0" layoutY="287.0" promptText="Password">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <Label layoutX="360.0" layoutY="140.0" text="Username">
+      <Label layoutX="508.0" layoutY="218.0" text="Username">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="360.0" layoutY="191.0" text="Password">
+      <Label layoutX="508.0" layoutY="269.0" text="Password">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="332.0" layoutY="64.0" prefHeight="37.0" prefWidth="206.0" text="Login Here">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="480.0" layoutY="142.0" prefHeight="37.0" prefWidth="206.0" text="Login Here">
          <font>
             <Font name="Bodoni MT Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="405.0" layoutY="279.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="24.0" prefWidth="55.0" text="BACK">
+      <Button layoutX="553.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="24.0" prefWidth="55.0" text="BACK">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>

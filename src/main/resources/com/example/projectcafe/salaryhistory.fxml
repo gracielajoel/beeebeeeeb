@@ -4,18 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_SalaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_SalaryController">
    <children>
-      <TableView fx:id="salaryHistoryTable" layoutX="44.0" layoutY="96.0" prefHeight="245.0" prefWidth="553.0">
+      <TableView fx:id="salaryHistoryTable" layoutX="79.0" layoutY="100.0" prefHeight="349.0" prefWidth="641.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="176.80001068115234" text="Name" />
+          <TableColumn fx:id="nameColumn" prefWidth="220.0" text="Name" />
           <TableColumn fx:id="lastSalaryColumn" prefWidth="223.20001220703125" text="Last Salary" />
-            <TableColumn fx:id="lastDateColumn" prefWidth="154.39999389648438" text="Last Date" />
+            <TableColumn fx:id="lastDateColumn" prefWidth="200.0" text="Last Date" />
         </columns>
       </TableView>
-      <AnchorPane layoutY="-2.0" prefHeight="62.0" prefWidth="641.0" style="-fx-background-color: peachpuff;">
+      <AnchorPane layoutY="-2.0" prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: peachpuff;">
          <children>
-            <Label layoutX="270.0" layoutY="19.0" prefHeight="22.0" prefWidth="102.0" text="Salary History">
+            <Label layoutX="349.0" layoutY="20.0" prefHeight="22.0" prefWidth="102.0" text="Salary History">
                <font>
                   <Font name="Bodoni MT" size="16.0" />
                </font>

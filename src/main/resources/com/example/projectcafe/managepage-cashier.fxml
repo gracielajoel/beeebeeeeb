@@ -4,33 +4,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ManagePageCashierController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ManagePageCashierController">
    <children>
-      <TableView fx:id="cashierTable" layoutX="27.0" layoutY="74.0" prefHeight="200.0" prefWidth="546.0">
+      <TableView fx:id="cashierTable" layoutX="87.0" layoutY="93.0" prefHeight="258.0" prefWidth="625.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="166.4000244140625" text="Cashier Name" />
-          <TableColumn fx:id="salaryColumn" minWidth="1.5999755859375" prefWidth="206.39996337890625" text="Salary" />
-            <TableColumn fx:id="commissionColumn" minWidth="0.0" prefWidth="174.4000244140625" text="Commission" />
+          <TableColumn fx:id="nameColumn" prefWidth="210.0" text="Cashier Name" />
+          <TableColumn fx:id="salaryColumn" minWidth="1.5999755859375" prefWidth="210.0" text="Salary" />
+            <TableColumn fx:id="commissionColumn" minWidth="0.0" prefWidth="205.0" text="Commission" />
         </columns>
       </TableView>
-      <Button layoutX="59.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="39.0" prefWidth="90.0" text="Add">
+      <Button layoutX="166.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="39.0" prefWidth="90.0" text="Add">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="255.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="39.0" prefWidth="90.0" text="Update">
+      <Button layoutX="362.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="39.0" prefWidth="90.0" text="Update">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="443.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="39.0" prefWidth="90.0" text="Delete">
+      <Button layoutX="550.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="39.0" prefWidth="90.0" text="Delete">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </Button>
-      <AnchorPane layoutY="-2.0" prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: deepskyblue;">
+      <AnchorPane layoutY="-2.0" prefHeight="62.0" prefWidth="800.0" style="-fx-background-color: deepskyblue;">
          <children>
-            <Label alignment="CENTER" layoutX="199.0" layoutY="11.0" prefHeight="39.0" prefWidth="201.0" text="Manage Cashier">
+            <Label alignment="CENTER" layoutX="299.0" layoutY="11.0" prefHeight="39.0" prefWidth="201.0" text="Manage Cashier">
                <font>
                   <Font name="Bodoni MT Bold" size="15.0" />
                </font>
@@ -38,17 +38,17 @@
             <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="39.0" prefWidth="66.0" text="Back" />
          </children>
       </AnchorPane>
-      <TextField fx:id="nameField" layoutX="33.0" layoutY="282.0" prefHeight="39.0" prefWidth="143.0" promptText="Cashier Name">
+      <TextField fx:id="nameField" layoutX="136.0" layoutY="374.0" prefHeight="39.0" prefWidth="143.0" promptText="Cashier Name">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="salaryField" layoutX="228.0" layoutY="282.0" prefHeight="39.0" prefWidth="143.0" promptText="Salary">
+      <TextField fx:id="salaryField" layoutX="331.0" layoutY="374.0" prefHeight="39.0" prefWidth="143.0" promptText="Salary">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="commissionField" layoutX="417.0" layoutY="282.0" prefHeight="39.0" prefWidth="143.0" promptText="Commission">
+      <TextField fx:id="commissionField" layoutX="520.0" layoutY="374.0" prefHeight="39.0" prefWidth="143.0" promptText="Commission">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>

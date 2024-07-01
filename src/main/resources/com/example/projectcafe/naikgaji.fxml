@@ -4,17 +4,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_NaikGajiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_NaikGajiController">
    <children>
-      <TableView fx:id="cashierReportTable" layoutX="43.0" layoutY="85.0" prefHeight="256.0" prefWidth="553.0">
+      <TableView fx:id="cashierReportTable" layoutX="71.0" layoutY="97.0" prefHeight="355.0" prefWidth="657.0">
         <columns>
-          <TableColumn fx:id="cashierNameColumn" prefWidth="312.0000419616699" text="Cashier Name" />
-            <TableColumn fx:id="countColumn" prefWidth="240.79998779296875" text="Count" />
+          <TableColumn fx:id="cashierNameColumn" prefWidth="330.0" text="Cashier Name" />
+            <TableColumn fx:id="countColumn" prefWidth="330.0" text="Number of Salary Increases" />
         </columns>
       </TableView>
-      <AnchorPane prefHeight="50.0" prefWidth="640.0" style="-fx-background-color: YellowGreen;">
+      <AnchorPane prefHeight="56.0" prefWidth="800.0" style="-fx-background-color: YellowGreen;">
          <children>
-            <Label layoutX="187.0" layoutY="14.0" prefHeight="22.0" prefWidth="266.0" text="Cashier's Report With Salary Increases">
+            <Label layoutX="267.0" layoutY="17.0" prefHeight="22.0" prefWidth="266.0" text="Cashier's Report With Salary Increases">
                <font>
                   <Font name="Bodoni MT" size="16.0" />
                </font>
@@ -24,7 +24,7 @@
                   <Font name="Bodoni MT" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="528.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleSalaryHistoryButton" prefHeight="34.0" prefWidth="97.0" text="Salary History">
+            <Button layoutX="688.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleSalaryHistoryButton" prefHeight="34.0" prefWidth="97.0" text="Salary History">
                <font>
                   <Font name="Bodoni MT" size="12.0" />
                </font>

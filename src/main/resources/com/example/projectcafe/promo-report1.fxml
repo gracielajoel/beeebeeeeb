@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportPromo1Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportPromo1Controller">
    <children>
-      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="766.0" style="-fx-background-color: limegreen;">
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: limegreen;">
          <children>
-            <Text layoutX="290.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Period of Available Promo Usage Report" textAlignment="CENTER" wrappingWidth="186.68878173828125">
+            <Text layoutX="307.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Period Available of Promo Usage Report" textAlignment="CENTER" wrappingWidth="186.68878173828125">
                <font>
                   <Font name="Bodoni MT Bold" size="15.0" />
                </font>
@@ -20,22 +20,22 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="periodTable" layoutX="96.0" layoutY="98.0" prefHeight="270.0" prefWidth="571.0">
+      <TableView fx:id="periodTable" layoutX="84.0" layoutY="86.0" prefHeight="328.0" prefWidth="631.0">
          <columns>
             <TableColumn fx:id="monthColumn" prefWidth="292.0000457763672" text="Month" />
             <TableColumn fx:id="yearColumn" prefWidth="277.5999633789063" text="Year" />
          </columns>
       </TableView>
-      <TextField fx:id="monthField" layoutX="152.0" layoutY="390.0" promptText="Month">
+      <TextField fx:id="monthField" layoutX="153.0" layoutY="448.0" promptText="Month">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="yearField" layoutX="458.0" layoutY="390.0" promptText="Year">
+      <TextField fx:id="yearField" layoutX="440.0" layoutY="448.0" promptText="Year">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>
       </TextField>
-      <Button fx:id="submitButton" layoutX="613.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleSubmit" text="OK" />
+      <Button fx:id="submitButton" layoutX="614.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleSubmit" text="OK" />
    </children>
 </AnchorPane>

@@ -4,18 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_TopProductController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_TopProductController">
    <children>
-      <TableView fx:id="bestMenuTable" layoutX="44.0" layoutY="86.0" prefHeight="263.0" prefWidth="553.0">
+      <TableView fx:id="bestMenuTable" layoutX="73.0" layoutY="103.0" prefHeight="360.0" prefWidth="653.0">
         <columns>
-          <TableColumn fx:id="categoryColumn" prefWidth="164.79999160766602" text="Category" />
+          <TableColumn fx:id="categoryColumn" prefWidth="220.0" text="Category" />
           <TableColumn fx:id="menuNameColumn" prefWidth="228.00006103515625" text="Menu Name" />
-            <TableColumn fx:id="countColumn" prefWidth="160.79995727539062" text="Count" />
+            <TableColumn fx:id="countColumn" prefWidth="210.0" text="Number of Products Sold" />
         </columns>
       </TableView>
-      <AnchorPane prefHeight="60.0" prefWidth="641.0" style="-fx-background-color: skyblue;">
+      <AnchorPane prefHeight="60.0" prefWidth="800.0" style="-fx-background-color: skyblue;">
          <children>
-            <Label layoutX="236.0" layoutY="19.0" text="TOP 5 Best Selling Menu">
+            <Label layoutX="316.0" layoutY="19.0" text="TOP 5 Best Selling Menu">
                <font>
                   <Font name="Bodoni MT" size="16.0" />
                </font>

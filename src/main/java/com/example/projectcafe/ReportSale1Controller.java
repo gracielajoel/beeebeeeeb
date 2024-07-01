@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,17 +152,34 @@ public class ReportSale1Controller {
     }
 
     private boolean isValidDate(String month, String year) {
+        return (getMonthNumber(month) != -1 && isValidYear(year));
+    }
+
+    private boolean isValidYear(String year) {
         try {
-            int m = Integer.parseInt(month);
             int y = Integer.parseInt(year);
-            return (m >= 1 && m <= 12 && y > 0);
+            return y > 0;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
+    private int getMonthNumber(String monthName) {
+        String[] months = new DateFormatSymbols().getMonths();
+        for (int i = 0; i < months.length; i++) {
+            if (months[i].equalsIgnoreCase(monthName)) {
+                return i + 1; // Month number is 1-based
+            }
+        }
+        return -1; // Invalid month
+    }
+
     private List<Sales> fetchTopSales(String month, String year) {
         List<Sales> sales = new ArrayList<>();
+        int monthNumber = getMonthNumber(month);
+        if (monthNumber == -1) {
+            return sales;
+        }
 
         String query = """
                     SELECT m.menu_name,SUM(d.qty) AS total_quantity, SUM(d.qty * CASE
@@ -174,14 +192,13 @@ public class ReportSale1Controller {
                     WHERE EXTRACT(MONTH FROM i.date_time) = ?
                     AND EXTRACT(YEAR FROM i.date_time) = ?
                     GROUP BY m.menu_id, m.menu_name, m.small_price, m.medium_price, m.large_price
-                    ORDER BY total_quantity DESC
-                    LIMIT 5;   
+                    ORDER BY total_quantity DESC;   
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, Integer.parseInt(month));
+            stmt.setInt(1, monthNumber);
             stmt.setInt(2, Integer.parseInt(year));
 
             ResultSet rs = stmt.executeQuery();
