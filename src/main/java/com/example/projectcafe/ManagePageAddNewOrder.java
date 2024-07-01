@@ -267,22 +267,10 @@ public class ManagePageAddNewOrder {
                 if (selectedPromo != null) {
                     System.out.println("Promo yang dipilih: " + selectedPromo.getPromoName());
 
-                    // Update order list with selected promo's details
-//                    for (Order order : orderList) {
-//                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
-//                        double afterPromoPrice = calculateAfterPromoPrice(price, selectedPromo, order.getQuantity());
-//                        order.setAfterPromoPrice(afterPromoPrice);
-//                        order.setPromoUsed(selectedPromo.getPromoName());
-//                    }
+
                     orderTable.refresh(); // Refresh table view to reflect changes
                     updateTotalPrice(); // Recalculate total price
                 } else {
-                    // If no promo is selected, revert to regular prices
-//                    for (Order order : orderList) {
-//                        double price = getPriceFromDatabase(order.getMenuName(), order.getSizeChosen());
-//                        order.setAfterPromoPrice(price * order.getQuantity());
-//                        order.setPromoUsed(null);
-//                    }
                     orderTable.refresh(); // Refresh table view to reflect changes
                     updateTotalPrice(); // Recalculate total price
                 }

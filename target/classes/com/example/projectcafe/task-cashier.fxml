@@ -4,15 +4,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BBD2EC;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.CashierTaskController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #BBD2EC;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.CashierTaskController">
    <children>
-      <AnchorPane layoutX="91.0" layoutY="61.0" prefHeight="298.0" prefWidth="418.0" style="-fx-background-color: #90B1DB;">
+      <AnchorPane layoutX="72.0" layoutY="55.0" prefHeight="440.0" prefWidth="655.0" style="-fx-background-color: #90B1DB;">
          <children>
-            <Text layoutX="177.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HI! ">
+            <Text layoutX="296.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HI! ">
                <font>
                   <Font name="Bookman Old Style" size="36.0" />
                </font>
             </Text>
+            <Button layoutX="141.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleViewReportButtonAction" prefHeight="72.0" prefWidth="374.0" text="View Report">
+               <font>
+                  <Font name="Bookman Old Style" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="141.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleManagingButtonAction" prefHeight="72.0" prefWidth="371.0" text="Managing">
+               <font>
+                  <Font name="Bodoni MT" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <GridPane layoutX="114.0" layoutY="113.0" prefHeight="252.0" prefWidth="370.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="114.0">
@@ -23,19 +33,7 @@
           <RowConstraints maxHeight="120.79999389648438" minHeight="0.0" prefHeight="117.60001220703126" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="142.8" minHeight="10.0" prefHeight="133.79998779296875" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" onAction="#handleViewReportButtonAction" prefHeight="72.0" prefWidth="374.0" text="View Report">
-               <font>
-                  <Font name="Bookman Old Style" size="13.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#handleManagingButtonAction" prefHeight="72.0" prefWidth="371.0" text="Managing" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Bodoni MT" size="15.0" />
-               </font>
-            </Button>
-         </children>
       </GridPane>
-      <Button layoutX="7.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="42.0" prefWidth="71.0" text="Exit" />
+      <Button layoutX="365.0" layoutY="418.0" mnemonicParsing="false" onAction="#handleExitButton" prefHeight="42.0" prefWidth="71.0" text="Exit" />
    </children>
 </AnchorPane>

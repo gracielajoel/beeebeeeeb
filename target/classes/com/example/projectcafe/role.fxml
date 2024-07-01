@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 50%, blue, lightblue);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.projectcafe.RoleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: radial-gradient(center 50% 50%, radius 50%, blue, lightblue);" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.RoleController">
    <children>
       <GridPane layoutX="158.0" layoutY="75.0" prefHeight="278.0" prefWidth="285.0">
         <columnConstraints>
@@ -14,23 +14,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" onAction="#handleCashierButtonAction" prefHeight="63.0" prefWidth="301.0" text="CASHIER" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Bodoni MT" size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#handleOwnerButtonAction" prefHeight="63.0" prefWidth="301.0" text="OWNER">
-               <font>
-                  <Font name="Bodoni MT" size="18.0" />
-               </font>
-            </Button>
-         </children>
       </GridPane>
-      <Text layoutX="108.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR ROLE !" wrappingWidth="384.00008392333984">
+      <Text layoutX="208.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR ROLE !" wrappingWidth="384.00008392333984">
          <font>
             <Font name="Bodoni MT" size="35.0" />
          </font>
       </Text>
+      <Button layoutX="250.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleCashierButtonAction" prefHeight="63.0" prefWidth="301.0" text="CASHIER">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="250.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleOwnerButtonAction" prefHeight="63.0" prefWidth="301.0" text="OWNER">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
