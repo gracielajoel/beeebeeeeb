@@ -82,7 +82,7 @@ public class ReportCashier2Controller {
             return; // Avoid querying if period is not set
         }
         try (Connection db = DatabaseConnection.getConnection()) {
-            String query = "SELECT C.cashier_name, COUNT(I.*) AS count_sales FROM invoices I JOIN cashiers C ON ( I.cashier_id = C.cashier_id ) WHERE TO_CHAR(I.date_time, 'FMMonth') || ' ' || EXTRACT(YEAR FROM I.date_time) = ? GROUP BY I.cashier_id, C.cashier_name";
+            String query = "SELECT C.cashier_name, COUNT(I.*) AS count_sales FROM invoices I JOIN cashiers C ON ( I.cashier_id = C.cashier_id ) WHERE TO_CHAR(I.date_time, 'FMMonth') || ' ' || EXTRACT(YEAR FROM I.date_time) = ? GROUP BY I.cashier_id, C.cashier_name ORDER BY count_sales DESC";
 
             PreparedStatement pstmt = db.prepareStatement(query);
             pstmt.setString(1, period);

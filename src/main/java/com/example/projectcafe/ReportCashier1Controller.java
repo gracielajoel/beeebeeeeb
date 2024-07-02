@@ -139,47 +139,6 @@ public class ReportCashier1Controller {
         }
     }
 
-    private boolean isValidDate(String month, String year) {
-        try {
-            int m = Integer.parseInt(month);
-            int y = Integer.parseInt(year);
-            return (m >= 1 && m <= 12 && y > 0);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private List<Cashier> fetchTopCashiers(String month, String year) {
-        List<Cashier> cashiers = new ArrayList<>();
-
-        String query = """
-                    SELECT c.cashier_name, COUNT(i.invoice_id) AS invoice_count
-                    FROM cashiers c
-                    LEFT JOIN invoices i ON c.cashier_id = i.cashier_id
-                    AND EXTRACT(MONTH FROM i.date_time) = ?
-                    AND EXTRACT(YEAR FROM i.date_time) = ?
-                    GROUP BY c.cashier_name
-                    ORDER BY invoice_count DESC
-                    LIMIT 5;
-                """;
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, Integer.parseInt(month));
-            stmt.setInt(2, Integer.parseInt(year));
-
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                String cashierName = rs.getString("cashier_name");
-                int totalPoints = rs.getInt("invoice_count");
-               // cashiers.add(new Cashier(cashierName, null, null, totalPoints));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return cashiers;
-    }
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

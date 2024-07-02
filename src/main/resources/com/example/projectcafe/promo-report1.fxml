@@ -22,8 +22,8 @@
       </AnchorPane>
       <TableView fx:id="periodTable" layoutX="84.0" layoutY="86.0" prefHeight="328.0" prefWidth="631.0">
          <columns>
-            <TableColumn fx:id="monthColumn" prefWidth="292.0000457763672" text="Month" />
-            <TableColumn fx:id="yearColumn" prefWidth="277.5999633789063" text="Year" />
+            <TableColumn fx:id="monthColumn" prefWidth="310.0" text="Month" />
+            <TableColumn fx:id="yearColumn" prefWidth="320.0" text="Year" />
          </columns>
       </TableView>
       <TextField fx:id="monthField" layoutX="153.0" layoutY="448.0" promptText="Month">

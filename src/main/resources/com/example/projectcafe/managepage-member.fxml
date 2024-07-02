@@ -20,8 +20,8 @@
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="156.8000144958496" text="Member Name" />
           <TableColumn fx:id="pointColumn" prefWidth="136.8000030517578" text="Member Point" />
-            <TableColumn fx:id="birthdateColumn" prefWidth="128.0" text="Birth-date" />
-            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="110.4000244140625" text="Email" />
+            <TableColumn fx:id="birthdateColumn" prefWidth="135.0" text="Birth-date" />
+            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="130.0" text="Email" />
             <TableColumn fx:id="addressColumn" prefWidth="140.800048828125" text="Address" />
         </columns>
       </TableView>

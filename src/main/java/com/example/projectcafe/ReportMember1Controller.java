@@ -188,6 +188,7 @@ public class ReportMember1Controller {
                             WHERE EXTRACT(MONTH FROM I.date_time) = ?
                             AND EXTRACT(YEAR FROM I.date_time) = ?
                             GROUP BY I.member_id, M.member_name
+                            ORDER BY sum_point DESC
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();

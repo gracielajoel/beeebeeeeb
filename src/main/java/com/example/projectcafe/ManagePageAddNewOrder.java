@@ -266,8 +266,6 @@ public class ManagePageAddNewOrder {
                 Promo selectedPromo = promoComboBox.getSelectionModel().getSelectedItem();
                 if (selectedPromo != null) {
                     System.out.println("Promo yang dipilih: " + selectedPromo.getPromoName());
-
-
                     orderTable.refresh(); // Refresh table view to reflect changes
                     updateTotalPrice(); // Recalculate total price
                 } else {
@@ -361,7 +359,7 @@ public class ManagePageAddNewOrder {
                                 rs.getString("promo_name")
                         );
                         promoList.add(promo);
-                        System.out.println("Loaded promo: " + promo.getPromoName()); // Tambahkan log
+                        System.out.println("Loaded promo: " + promo.getPromoName());
                     }
                 }
             }
@@ -412,7 +410,7 @@ public class ManagePageAddNewOrder {
 
     private double calculateAfterPromoPrice(double price, Promo promo, int quantity) {
         if (promo == null) {
-            return price * quantity; // Return regular price multiplied by quantity if no promo applied
+            return price * quantity;
         }
         double discount = promo.getTotalDiscount();
         double discountedPrice = price - (price * discount);
@@ -446,10 +444,10 @@ public class ManagePageAddNewOrder {
 
         ObservableList<Promo> promos = loadPromos(date, menuName, paymentType);
         if (!promos.isEmpty()) {
-            promoComboBox.getItems().clear(); // Hanya kosongkan setelah yakin ada promo baru
+            promoComboBox.getItems().clear();
             promoComboBox.setItems(promos);
         } else {
-            promoComboBox.getItems().clear(); // Jika tidak ada promo, pastikan kosongkan
+            promoComboBox.getItems().clear();
             showAlert(Alert.AlertType.INFORMATION, "No Promos", "Tidak ada promo yang tersedia untuk kriteria ini.");
         }
     }
@@ -490,7 +488,6 @@ public class ManagePageAddNewOrder {
             System.out.println(datetime);
 
             if ( memberId.isEmpty() ){
-                // Pastikan urutan kolom sesuai dengan urutan nilai yang diberikan
                 String query = "INSERT INTO invoices (date_time, customer_name, total_price, pay, payment_method, change, cashier_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -510,7 +507,6 @@ public class ManagePageAddNewOrder {
                 }
 
             } else {
-                // Pastikan urutan kolom sesuai dengan urutan nilai yang diberikan
                 String query = "INSERT INTO invoices (date_time, customer_name, total_price, pay, payment_method, change, add_point, cashier_id, member_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = db.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -531,7 +527,7 @@ public class ManagePageAddNewOrder {
                     invoiceId = rs2.getInt(1);
                 }
 
-                // Update member points
+                // update member points
                 String addMemberPoint = "UPDATE members SET member_point = ? WHERE member_id = ?";
                 PreparedStatement pstmt3 = db.prepareStatement(addMemberPoint);
                 pstmt3.setInt(1, Integer.parseInt(addPoint));
@@ -539,10 +535,9 @@ public class ManagePageAddNewOrder {
                 pstmt3.executeUpdate();
             }
 
-            // Add to detail orders
+            // add to detail orders
             addToDetailOrders(db, invoiceId);
 
-            // Clear fields after successful insertion
             clearFields();
             timeField.clear();
             paymentTypeField.clear();
@@ -562,17 +557,6 @@ public class ManagePageAddNewOrder {
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
             return rs.getInt("menu_id");
-        }
-        return -1;
-    }
-
-    private int getCategoryId(Connection db, String categoryName)throws SQLException{
-        String query = "SELECT category_id FROM categories WHERE product_category = ?";
-        PreparedStatement pstmt = db.prepareStatement(query);
-        pstmt.setString(1, categoryName);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("category_id");
         }
         return -1;
     }

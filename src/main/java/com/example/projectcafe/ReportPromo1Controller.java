@@ -193,6 +193,7 @@ public class ReportPromo1Controller {
                     WHERE EXTRACT(MONTH FROM I.date_time) = ?\s
                     AND EXTRACT(YEAR FROM I.date_time) = ?
                     GROUP BY D.promo_id, P.promo_name
+                    ORDER BY COUNT(D.*) DESC
                 """;
 
         try (Connection conn = DatabaseConnection.getConnection();
