@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportSale1Controller">
+   <children>
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #91AEC4;">
+         <children>
+            <Text layoutX="276.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sales Reporting Period Available" textAlignment="CENTER" wrappingWidth="248.288818359375">
+               <font>
+                  <Font name="Bodoni MT Bold" size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="backButton" layoutX="16.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="62.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="salesPeriodTable" layoutX="87.0" layoutY="86.0" prefHeight="310.0" prefWidth="626.0">
+         <columns>
+            <TableColumn fx:id="monthColumn" prefWidth="220.0" text="Month" />
+            <TableColumn fx:id="yearColumn" prefWidth="212.79998779296875" text="Year" />
+            <TableColumn fx:id="totalColumn" prefWidth="200.0" text="Total Sales" />
+         </columns>
+      </TableView>
+      <TextField fx:id="monthField" layoutX="192.0" layoutY="437.0" prefHeight="26.0" prefWidth="164.0" promptText="Month">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="yearField" layoutX="387.0" layoutY="437.0" prefHeight="26.0" prefWidth="164.0" promptText="Year">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="submitButton" layoutX="575.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleSubmit" text="OK" />
+   </children>
+</AnchorPane>

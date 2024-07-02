@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.ReportCashier2Controller">
+   <children>
+      <AnchorPane layoutY="-9.0" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #81D8D0;">
+         <children>
+            <Text layoutX="276.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Most Active Cashier" textAlignment="CENTER" wrappingWidth="248.288818359375">
+               <font>
+                  <Font name="Bodoni MT Bold" size="15.0" />
+               </font>
+            </Text>
+            <Button fx:id="backButton" layoutX="16.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="35.0" prefWidth="62.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="cashierTable" layoutX="82.0" layoutY="91.0" prefHeight="366.0" prefWidth="646.0">
+         <columns>
+            <TableColumn fx:id="nameColumn" prefWidth="350.0" text="Name" />
+            <TableColumn fx:id="countColumn" prefWidth="307.20001220703125" text="Number of Sales" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

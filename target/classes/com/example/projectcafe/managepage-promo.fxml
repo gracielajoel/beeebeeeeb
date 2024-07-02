@@ -17,7 +17,7 @@
             <Button layoutX="712.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleMenuAction" prefHeight="44.0" prefWidth="74.0" text="Menu" />
          </children>
       </AnchorPane>
-      <TableView fx:id="promoTable" layoutX="29.0" layoutY="80.0" prefHeight="240.0" prefWidth="738.0">
+      <TableView fx:id="promoTable" layoutX="29.0" layoutY="80.0" prefHeight="281.0" prefWidth="738.0">
         <columns>
           <TableColumn fx:id="periodColumn" prefWidth="114.39993000030518" text="Promo Period" />
           <TableColumn fx:id="paymentColumn" prefWidth="132.0000762939453" text="Payment type" />
@@ -27,39 +27,39 @@
             <TableColumn fx:id="promoNameColumn" prefWidth="126.39999999999998" text="Promo Name" />
         </columns>
       </TableView>
-      <Button layoutX="577.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="32.0" prefWidth="94.0" text="Add">
+      <Button layoutX="576.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="32.0" prefWidth="94.0" text="Add">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></Button>
-      <Button layoutX="577.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="32.0" prefWidth="93.0" text="Update">
+      <Button layoutX="576.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="32.0" prefWidth="93.0" text="Update">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></Button>
-      <Button layoutX="577.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="32.0" prefWidth="93.0" text="Delete">
+      <Button layoutX="576.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="32.0" prefWidth="93.0" text="Delete">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></Button>
-      <TextField fx:id="promoPeriodField" layoutX="83.0" layoutY="346.0" prefHeight="32.0" prefWidth="171.0" promptText="Promo Period">
+      <TextField fx:id="promoPeriodField" layoutX="82.0" layoutY="383.0" prefHeight="32.0" prefWidth="171.0" promptText="Promo Period">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></TextField>
-      <TextField fx:id="paymentField" layoutX="83.0" layoutY="403.0" prefHeight="32.0" prefWidth="171.0" promptText="Payment Type">
+      <TextField fx:id="paymentField" layoutX="82.0" layoutY="440.0" prefHeight="32.0" prefWidth="171.0" promptText="Payment Type">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></TextField>
-      <TextField fx:id="discountField" layoutX="83.0" layoutY="461.0" prefHeight="32.0" prefWidth="171.0" promptText="Total Discount">
+      <TextField fx:id="discountField" layoutX="82.0" layoutY="498.0" prefHeight="32.0" prefWidth="171.0" promptText="Total Discount">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></TextField>
-      <TextField fx:id="categoryField" layoutX="344.0" layoutY="346.0" prefHeight="32.0" prefWidth="171.0" promptText="Category">
+      <TextField fx:id="categoryField" layoutX="343.0" layoutY="383.0" prefHeight="32.0" prefWidth="171.0" promptText="Category">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></TextField>
-      <TextField fx:id="menuField" layoutX="344.0" layoutY="403.0" prefHeight="32.0" prefWidth="171.0" promptText="Menu">
+      <TextField fx:id="menuField" layoutX="343.0" layoutY="440.0" prefHeight="32.0" prefWidth="171.0" promptText="Menu">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font></TextField>
-      <TextField fx:id="promoNameField" layoutX="344.0" layoutY="467.0" prefHeight="32.0" prefWidth="171.0" promptText="Promo Name">
+      <TextField fx:id="promoNameField" layoutX="343.0" layoutY="504.0" prefHeight="32.0" prefWidth="171.0" promptText="Promo Name">
          <font>
             <Font name="Bodoni MT" size="12.0" />
          </font>

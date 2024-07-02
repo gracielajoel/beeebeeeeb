@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projectcafe.Other_TopProductController">
+   <children>
+      <TableView fx:id="bestMenuTable" layoutX="73.0" layoutY="103.0" prefHeight="360.0" prefWidth="653.0">
+        <columns>
+          <TableColumn fx:id="categoryColumn" prefWidth="220.0" text="Category" />
+          <TableColumn fx:id="menuNameColumn" prefWidth="228.00006103515625" text="Menu Name" />
+            <TableColumn fx:id="countColumn" prefWidth="210.0" text="Number of Products Sold" />
+        </columns>
+      </TableView>
+      <AnchorPane prefHeight="60.0" prefWidth="800.0" style="-fx-background-color: skyblue;">
+         <children>
+            <Label layoutX="316.0" layoutY="19.0" text="TOP 5 Best Selling Menu">
+               <font>
+                  <Font name="Bodoni MT" size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="61.0" text="Back">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
